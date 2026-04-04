@@ -10,6 +10,8 @@ import 'package:flutter_relearn/screens/adaptive/nested_theme_screen.dart';
 import 'package:flutter_relearn/screens/adaptive/best_practices_screen.dart';
 import 'package:flutter_relearn/screens/platform_adaptations/platform_adaptations_home.dart';
 import 'package:flutter_relearn/screens/accessibility/accessibility_home.dart';
+import 'package:flutter_relearn/screens/assets_images/assets_images_home.dart';
+import 'package:flutter_relearn/screens/navigation/navigation_home.dart';
 
 class AdaptiveHome extends StatelessWidget {
   const AdaptiveHome({super.key});
@@ -93,6 +95,20 @@ class AdaptiveHome extends StatelessWidget {
         icon: Icons.touch_app,
         color: Colors.deepOrange,
         screen: const InteractivityHome(),
+      ),
+      _Topic(
+        title: 'Assets & Images',
+        description: 'Declare, load, and display images and text assets',
+        icon: Icons.photo_library,
+        color: Colors.teal,
+        screen: const AssetsImagesHome(),
+      ),
+      _Topic(
+        title: 'Navigation & Routing',
+        description: 'Tabs, push/pop, send & return data, drawer, sheets',
+        icon: Icons.route,
+        color: Colors.indigo,
+        screen: const NavigationHome(),
       ),
     ];
 

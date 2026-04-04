@@ -1,0 +1,3 @@
+Hello from Flutter assets!
+This file was loaded using rootBundle.loadString().
+Flutter bundles this file at build time so you can read it at runtime.
