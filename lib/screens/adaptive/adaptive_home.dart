@@ -12,6 +12,7 @@ import 'package:flutter_relearn/screens/platform_adaptations/platform_adaptation
 import 'package:flutter_relearn/screens/accessibility/accessibility_home.dart';
 import 'package:flutter_relearn/screens/assets_images/assets_images_home.dart';
 import 'package:flutter_relearn/screens/navigation/navigation_home.dart';
+import 'package:flutter_relearn/screens/animations/animations_home.dart';
 
 class AdaptiveHome extends StatelessWidget {
   const AdaptiveHome({super.key});
@@ -109,6 +110,13 @@ class AdaptiveHome extends StatelessWidget {
         icon: Icons.route,
         color: Colors.indigo,
         screen: const NavigationHome(),
+      ),
+      _Topic(
+        title: 'Animations & Transitions',
+        description: 'AnimatedContainer, Opacity, Switcher, Hero, page routes',
+        icon: Icons.animation,
+        color: Colors.deepOrange,
+        screen: const AnimationsHome(),
       ),
     ];
 
