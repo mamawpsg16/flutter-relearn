@@ -9,6 +9,7 @@ class AnimatedSwitcherScreen extends StatefulWidget {
 
 class _AnimatedSwitcherScreenState extends State<AnimatedSwitcherScreen> {
   int _count = 0;
+  int _iconIndex = 0; // separate state for icon switcher
   bool _showA = true;
   final _icons = [
     Icons.favorite,
@@ -130,15 +131,15 @@ child: _showA ? WidgetA() : WidgetB()''',
                         ),
                       ),
                       child: Icon(
-                        _icons[_count.abs() % _icons.length],
-                        key: ValueKey(_count.abs() % _icons.length),
+                        _icons[_iconIndex % _icons.length],
+                        key: ValueKey(_iconIndex), // always unique per tap
                         size: 64,
                         color: Colors.deepPurple,
                       ),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
-                      onPressed: () => setState(() => _count++),
+                      onPressed: () => setState(() => _iconIndex++),
                       child: const Text('Next Icon'),
                     ),
                   ],
