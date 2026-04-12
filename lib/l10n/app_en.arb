@@ -1,0 +1,42 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Flutter Relearn",
+  "@appTitle": { "description": "The application title" },
+
+  "welcomeMessage": "Welcome to our store!",
+  "@welcomeMessage": { "description": "Welcome banner on home page" },
+
+  "greeting": "Hello, {name}!",
+  "@greeting": {
+    "description": "Greeting with user name",
+    "placeholders": {
+      "name": { "type": "String", "example": "Alice" }
+    }
+  },
+
+  "addToCart": "Add to Cart",
+  "@addToCart": { "description": "Add to cart button label" },
+
+  "checkout": "Checkout",
+  "@checkout": { "description": "Checkout button label" },
+
+  "price": "Price: {amount}",
+  "@price": {
+    "description": "Product price display",
+    "placeholders": {
+      "amount": { "type": "String", "example": "$29.99" }
+    }
+  },
+
+  "itemCount": "{count, plural, =0{No items} =1{1 item} other{{count} items}}",
+  "@itemCount": {
+    "description": "Number of items in cart",
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "languageName": "English",
+  "@languageName": { "description": "Name of this language in its own language" }
+}

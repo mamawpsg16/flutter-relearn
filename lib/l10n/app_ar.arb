@@ -1,0 +1,11 @@
+{
+  "@@locale": "ar",
+  "appTitle": "فلاتر ريلرن",
+  "welcomeMessage": "مرحباً بك في متجرنا!",
+  "greeting": "مرحباً، {name}!",
+  "addToCart": "أضف إلى السلة",
+  "checkout": "الدفع",
+  "price": "السعر: {amount}",
+  "itemCount": "{count, plural, =0{لا توجد عناصر} =1{عنصر واحد} =2{عنصران} other{{count} عناصر}}",
+  "languageName": "العربية"
+}

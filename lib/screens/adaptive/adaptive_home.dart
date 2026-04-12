@@ -10,9 +10,11 @@ import 'package:flutter_relearn/screens/adaptive/nested_theme_screen.dart';
 import 'package:flutter_relearn/screens/adaptive/best_practices_screen.dart';
 import 'package:flutter_relearn/screens/platform_adaptations/platform_adaptations_home.dart';
 import 'package:flutter_relearn/screens/accessibility/accessibility_home.dart';
+import 'package:flutter_relearn/screens/accessibility/accessibility_docs_home.dart';
 import 'package:flutter_relearn/screens/assets_images/assets_images_home.dart';
 import 'package:flutter_relearn/screens/navigation/navigation_home.dart';
 import 'package:flutter_relearn/screens/animations/animations_home.dart';
+import 'package:flutter_relearn/screens/i18n/i18n_home.dart';
 
 class AdaptiveHome extends StatelessWidget {
   const AdaptiveHome({super.key});
@@ -84,6 +86,13 @@ class AdaptiveHome extends StatelessWidget {
         screen: const AccessibilityHome(),
       ),
       _Topic(
+        title: 'Accessibility',
+        description: 'Introduction, UI design, assistive tech, testing, web',
+        icon: Icons.hearing,
+        color: Colors.deepPurple,
+        screen: const AccessibilityDocsHome(),
+      ),
+      _Topic(
         title: 'Design & Theming',
         description: 'Themes, Material 3, fonts, typography, shaders',
         icon: Icons.palette_outlined,
@@ -117,6 +126,13 @@ class AdaptiveHome extends StatelessWidget {
         icon: Icons.animation,
         color: Colors.deepOrange,
         screen: const AnimationsHome(),
+      ),
+      _Topic(
+        title: 'Internationalizing Flutter Apps',
+        description: 'i18n, ARB files, AppLocalizations, RTL, plurals',
+        icon: Icons.language,
+        color: Colors.teal,
+        screen: const I18nHome(),
       ),
     ];
 

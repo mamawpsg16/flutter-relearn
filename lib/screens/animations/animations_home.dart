@@ -6,7 +6,8 @@ import 'hero_screen.dart';
 import 'page_route_transitions_screen.dart';
 import 'tween_animation_builder_screen.dart';
 import 'animation_controller_screen.dart';
-
+import 'physics_simulation_screen.dart';
+import 'staggered_menu_screen.dart';
 class AnimationsHome extends StatelessWidget {
   const AnimationsHome({super.key});
 
@@ -61,6 +62,20 @@ class AnimationsHome extends StatelessWidget {
         icon: Icons.play_circle_outline,
         color: Colors.deepPurple,
         screen: const AnimationControllerScreen(),
+      ),
+      _Topic(
+        title: 'Physics Simulation',
+        description: 'Animate using spring physics',
+        icon: Icons.sports_basketball,
+        color: Colors.lightGreen,
+        screen: const PhysicsSimulationScreen(),
+      ),
+      _Topic(
+        title: 'Staggered Animations',
+        description: 'Sequential entry using Intervals',
+        icon: Icons.format_list_bulleted,
+        color: Colors.cyan,
+        screen: const StaggeredMenuScreen(),
       ),
     ];
 

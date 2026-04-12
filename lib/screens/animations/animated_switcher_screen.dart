@@ -10,6 +10,7 @@ class AnimatedSwitcherScreen extends StatefulWidget {
 class _AnimatedSwitcherScreenState extends State<AnimatedSwitcherScreen> {
   int _count = 0;
   bool _showA = true;
+  bool _isSwapping = false;
   final _icons = [
     Icons.favorite,
     Icons.star,
@@ -156,41 +157,64 @@ child: _showA ? WidgetA() : WidgetB()''',
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 500),
-                      child: _showA
-                          ? Container(
-                              key: const ValueKey('A'),
-                              height: 80,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.blue.shade400,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Center(
-                                child: Text('Widget A',
+                    SizedBox(
+                      height: 80,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 500),
+                        layoutBuilder: (currentChild, previousChildren) {
+                          return Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              ...previousChildren,
+                              ?currentChild,
+                            ],
+                          );
+                        },
+                        child: _showA
+                            ? Container(
+                                key: const ValueKey('A'),
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue.shade400,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                alignment: Alignment.center,
+                                child: const Text('Widget A',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20)),
+                              )
+                            : Container(
+                                key: const ValueKey('B'),
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: Colors.orange.shade400,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                alignment: Alignment.center,
+                                child: const Text('Widget B',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20)),
                               ),
-                            )
-                          : Container(
-                              key: const ValueKey('B'),
-                              height: 80,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.orange.shade400,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Center(
-                                child: Text('Widget B',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20)),
-                              ),
-                            ),
+                      ),
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: () => setState(() => _showA = !_showA),
+                      onPressed: _isSwapping
+                          ? null
+                          : () {
+                              setState(() {
+                                _showA = !_showA;
+                                _isSwapping = true;
+                              });
+                              Future.delayed(
+                                const Duration(milliseconds: 500),
+                                () {
+                                  if (mounted) {
+                                    setState(() => _isSwapping = false);
+                                  }
+                                },
+                              );
+                            },
                       child: const Text('Swap Widgets'),
                     ),
                   ],

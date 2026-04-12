@@ -1,0 +1,11 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Flutter Relearn",
+  "welcomeMessage": "Bienvenue dans notre boutique !",
+  "greeting": "Bonjour, {name} !",
+  "addToCart": "Ajouter au panier",
+  "checkout": "Commander",
+  "price": "Prix : {amount}",
+  "itemCount": "{count, plural, =0{Aucun article} =1{1 article} other{{count} articles}}",
+  "languageName": "Français"
+}

@@ -1,8 +1,13 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(flutter pub:*)",
-      "Bash(flutter analyze:*)"
-    ]
+  "mcpServers": {
+    "dart-flutter": {
+      "command": "dart",
+      "args": ["mcp-server"],
+      "type": "stdio"
+    },
+   "context7": {
+      "command": "context7-mcp",
+      "type": "stdio"
+    }
   }
 }

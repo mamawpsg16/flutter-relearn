@@ -1,0 +1,11 @@
+{
+  "@@locale": "ja",
+  "appTitle": "フラッターリラーン",
+  "welcomeMessage": "ストアへようこそ！",
+  "greeting": "こんにちは、{name}さん！",
+  "addToCart": "カートに追加",
+  "checkout": "チェックアウト",
+  "price": "価格：{amount}",
+  "itemCount": "{count, plural, =0{アイテムなし} other{{count}個のアイテム}}",
+  "languageName": "日本語"
+}

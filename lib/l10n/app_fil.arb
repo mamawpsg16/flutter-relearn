@@ -1,0 +1,11 @@
+{
+  "@@locale": "fil",
+  "appTitle": "Flutter Relearn",
+  "welcomeMessage": "Maligayang pagdating sa aming tindahan!",
+  "greeting": "Kamusta, {name}!",
+  "addToCart": "Idagdag sa Cart",
+  "checkout": "Mag-checkout",
+  "price": "Presyo: {amount}",
+  "itemCount": "{count, plural, =0{Walang aytem} =1{1 aytem} other{{count} na aytem}}",
+  "languageName": "Filipino"
+}
