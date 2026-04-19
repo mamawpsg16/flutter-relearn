@@ -15,6 +15,7 @@ import 'package:flutter_relearn/screens/assets_images/assets_images_home.dart';
 import 'package:flutter_relearn/screens/navigation/navigation_home.dart';
 import 'package:flutter_relearn/screens/animations/animations_home.dart';
 import 'package:flutter_relearn/screens/i18n/i18n_home.dart';
+import 'package:flutter_relearn/screens/beyond_ui/beyond_ui_home.dart';
 
 class AdaptiveHome extends StatelessWidget {
   const AdaptiveHome({super.key});
@@ -133,6 +134,13 @@ class AdaptiveHome extends StatelessWidget {
         icon: Icons.language,
         color: Colors.teal,
         screen: const I18nHome(),
+      ),
+      _Topic(
+        title: 'Beyond the UI',
+        description: 'State management with ChangeNotifier & Provider',
+        icon: Icons.share_outlined,
+        color: Colors.deepPurple,
+        screen: const BeyondUiHome(),
       ),
     ];
 

@@ -2,12 +2,19 @@
   "mcpServers": {
     "dart-flutter": {
       "command": "dart",
-      "args": ["mcp-server"],
+      "args": [
+        "mcp-server"
+      ],
       "type": "stdio"
     },
-   "context7": {
+    "context7": {
       "command": "context7-mcp",
       "type": "stdio"
     }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(flutter analyze:*)"
+    ]
   }
 }
