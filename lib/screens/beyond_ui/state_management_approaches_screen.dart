@@ -265,6 +265,8 @@ counter.dispose();''',
 final count = CounterNotifier.of(context); // reactive!''',
         ),
         const SizedBox(height: 12),
+        const _InheritedNotifierDemo(),
+        const SizedBox(height: 12),
         const _ValueNotifierDemo(),
         const SizedBox(height: 12),
         _TipCard(
@@ -276,6 +278,135 @@ final count = CounterNotifier.of(context); // reactive!''',
   }
 }
 
+// ── InheritedNotifier live demo ──────────────────────────────────────────────
+
+// The actual InheritedNotifier — wraps a ValueNotifier<int> and shares it
+// down the tree. Any descendant that calls CounterInherited.of(context)
+// will automatically rebuild when the notifier changes.
+class _CounterInherited extends InheritedNotifier<ValueNotifier<int>> {
+  const _CounterInherited({
+    required ValueNotifier<int> notifier,
+    required super.child,
+  }) : super(notifier: notifier);
+
+  // Static helper so descendants don't need to know the type internals
+  static int of(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<_CounterInherited>()!
+          .notifier!
+          .value;
+}
+
+// The demo — creates the ValueNotifier at the top and injects via _CounterInherited
+class _InheritedNotifierDemo extends StatefulWidget {
+  const _InheritedNotifierDemo();
+
+  @override
+  State<_InheritedNotifierDemo> createState() => _InheritedNotifierDemoState();
+}
+
+class _InheritedNotifierDemoState extends State<_InheritedNotifierDemo> {
+  // ValueNotifier lives here — passed into the InheritedNotifier
+  final _counter = ValueNotifier<int>(0);
+
+  @override
+  void dispose() {
+    _counter.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _DemoContainer(
+      label: 'Live Demo — InheritedNotifier sharing state down the tree',
+      child: _CounterInherited(
+        notifier: _counter,  // inject the ValueNotifier into the tree
+        child: Column(
+          children: [
+            const Text(
+              'The counter lives at the top. Both widgets below read it via '
+              '_CounterInherited.of(context) — no prop drilling.',
+              style: TextStyle(fontSize: 11, color: Colors.grey),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            // Two separate descendants both reading from InheritedNotifier
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _CounterDisplay(),   // rebuilds when counter changes
+                _CounterBadge(),     // also rebuilds when counter changes
+              ],
+            ),
+            const SizedBox(height: 12),
+            // Buttons mutate the ValueNotifier directly — no setState needed
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.remove),
+                  onPressed: () => _counter.value--,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () => _counter.value++,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Descendant 1 — reads count via InheritedNotifier, no prop passed in
+class _CounterDisplay extends StatelessWidget {
+  const _CounterDisplay();
+
+  @override
+  Widget build(BuildContext context) {
+    // dependOnInheritedWidgetOfExactType registers this widget as a listener
+    final count = _CounterInherited.of(context);
+    return Column(
+      children: [
+        const Text('Display widget', style: TextStyle(fontSize: 11, color: Colors.grey)),
+        const SizedBox(height: 4),
+        Text(
+          '$count',
+          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+}
+
+// Descendant 2 — also reads count, completely independent widget
+class _CounterBadge extends StatelessWidget {
+  const _CounterBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    final count = _CounterInherited.of(context);
+    return Column(
+      children: [
+        const Text('Badge widget', style: TextStyle(fontSize: 11, color: Colors.grey)),
+        const SizedBox(height: 4),
+        CircleAvatar(
+          radius: 24,
+          backgroundColor: count > 0 ? Colors.green : Colors.grey,
+          child: Text(
+            '$count',
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ── ValueNotifier demo ───────────────────────────────────────────────────────
 class _ValueNotifierDemo extends StatefulWidget {
   const _ValueNotifierDemo();
 

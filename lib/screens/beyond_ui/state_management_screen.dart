@@ -410,10 +410,23 @@ class _ConsumerDemo extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.deepPurple.shade700)),
           const SizedBox(height: 8),
+          // child = widget that does NOT depend on CartModel
+          // It is built ONCE and passed into builder on every rebuild
+          // This avoids rebuilding expensive widgets unnecessarily
           Consumer<CartModel>(
-            builder: (ctx, cart, child) => Text(
-              'Cart has ${cart.totalItems} item(s)',
-              style: const TextStyle(fontSize: 16),
+            // The heavy icon below is built once and reused
+            child: const Icon(Icons.shopping_cart, size: 32, color: Colors.deepPurple),
+            builder: (ctx, cart, child) => Row(
+              children: [
+                // child is the pre-built Icon — not rebuilt when cart changes
+                child!,
+                const SizedBox(width: 12),
+                // Only this Text rebuilds when cart changes
+                Text(
+                  'Cart has ${cart.totalItems} item(s)',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 8),
@@ -480,6 +493,21 @@ class _PuttingItAllTogetherSection extends StatelessWidget {
   const _PuttingItAllTogetherSection();
 
   static const _catalog = ['Apple', 'Banana', 'Mango', 'Orange', 'Grapes'];
+
+  @override
+  Widget build(BuildContext context) {
+    // Isolated provider — this demo gets its own CartModel, completely
+    // separate from the shared one used by the Consumer/Provider.of demos above
+    return ChangeNotifierProvider(
+      create: (_) => CartModel(),
+      child: _PuttingItAllTogetherBody(catalog: _catalog),
+    );
+  }
+}
+
+class _PuttingItAllTogetherBody extends StatelessWidget {
+  final List<String> catalog;
+  const _PuttingItAllTogetherBody({required this.catalog});
 
   @override
   Widget build(BuildContext context) {
@@ -581,7 +609,7 @@ class _PuttingItAllTogetherSection extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.deepPurple.shade700)),
               const SizedBox(height: 8),
-              ..._catalog.map(
+              ...catalog.map(
                 (item) => _CatalogTile(item: item),
               ),
             ],
