@@ -17,6 +17,7 @@ import 'package:flutter_relearn/screens/animations/animations_home.dart';
 import 'package:flutter_relearn/screens/i18n/i18n_home.dart';
 import 'package:flutter_relearn/screens/beyond_ui/beyond_ui_home.dart';
 import 'package:flutter_relearn/screens/networking/networking_home.dart';
+import 'package:flutter_relearn/screens/serialization/json_serialization_home.dart';
 
 class AdaptiveHome extends StatelessWidget {
   const AdaptiveHome({super.key});
@@ -149,6 +150,13 @@ class AdaptiveHome extends StatelessWidget {
         icon: Icons.wifi,
         color: Colors.indigo,
         screen: const NetworkingHome(),
+      ),
+      _Topic(
+        title: 'JSON Serialization',
+        description: 'Manual dart:convert, json_serializable, nested classes & more',
+        icon: Icons.data_object,
+        color: Colors.deepPurple,
+        screen: const JsonSerializationHome(),
       ),
     ];
 

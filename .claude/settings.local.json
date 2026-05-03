@@ -10,6 +10,13 @@
     "context7": {
       "command": "context7-mcp",
       "type": "stdio"
+    },
+    "fs-shrunk": {
+      "command": "npx",
+      "args": [
+        "caveman-shrink",
+        "npx", "@modelcontextprotocol/server-filesystem", "C:\\Users\\Maricar Lacap\\Downloads\\KAM - Copy\\flutter-relearn"
+      ]
     }
   },
   "permissions": {

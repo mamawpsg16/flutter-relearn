@@ -189,25 +189,23 @@ Future<void> _deleteItem(int id) async {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Row(
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 6,
+                    runSpacing: 6,
                     children: [
                       const Text('Post ID: '),
-                      const SizedBox(width: 12),
-                      // ID picker
                       for (final id in [1, 2, 3, 5, 10])
-                        Padding(
-                          padding: const EdgeInsets.only(right: 6),
-                          child: ChoiceChip(
-                            label: Text('$id'),
-                            selected: _postId == id,
-                            onSelected: _loading || _deleted
-                                ? null
-                                : (_) => setState(() {
-                                      _postId = id;
-                                      _result = '';
-                                      _deleted = false;
-                                    }),
-                          ),
+                        ChoiceChip(
+                          label: Text('$id'),
+                          selected: _postId == id,
+                          onSelected: _loading || _deleted
+                              ? null
+                              : (_) => setState(() {
+                                    _postId = id;
+                                    _result = '';
+                                    _deleted = false;
+                                  }),
                         ),
                     ],
                   ),
