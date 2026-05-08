@@ -40,10 +40,20 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.1.2
   http: ^1.6.0
+  json_annotation: ^4.11.0
+  flutter_riverpod: ^3.3.1
+  shared_preferences: ^2.5.5
+  path_provider: ^2.1.5
+  sqflite: ^2.4.2+1
+  path: ^1.9.1
+  firebase_core: ^4.7.0
+  firebase_auth: ^6.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.8.0
+  build_runner: ^2.15.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

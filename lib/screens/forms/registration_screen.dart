@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../ models/user.dart';
+import '../../ models/profile.dart';
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({super.key});
@@ -41,7 +42,12 @@ class RegistrationFormState extends State<RegistrationForm>
     if (_formKey.currentState!.validate()) {
       setState(() {
         _users.add(
-          User(name: _nameController.text, email: _emailController.text),
+          User(
+            name: _nameController.text,
+            email: _emailController.text,
+            profile: Profile(bio: '', avatar: ''),
+            posts: [],
+          ),
         );
         _nameController.clear();
         _emailController.clear();

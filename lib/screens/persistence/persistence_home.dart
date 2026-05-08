@@ -1,50 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_relearn/screens/beyond_ui/state_management_screen.dart';
-import 'package:flutter_relearn/screens/beyond_ui/state_management_approaches_screen.dart';
-import 'package:flutter_relearn/screens/beyond_ui/provider_screen.dart';
-import 'package:flutter_relearn/screens/beyond_ui/riverpod_screen.dart';
+import 'shared_preferences_screen.dart';
+import 'read_write_files_screen.dart';
+import 'sqlite_screen.dart';
+import 'firebase_auth_screen.dart';
 
-class BeyondUiHome extends StatelessWidget {
-  const BeyondUiHome({super.key});
+class PersistenceHome extends StatelessWidget {
+  const PersistenceHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     final topics = [
       _Topic(
-        title: 'State Management',
+        title: 'Store Key-Value Data on Disk',
+        description: 'shared_preferences — save, read, remove, clear',
+        icon: Icons.storage,
+        color: Colors.indigo,
+        screen: const SharedPreferencesScreen(),
+      ),
+      _Topic(
+        title: 'Read & Write Files',
         description:
-            'ChangeNotifier, ChangeNotifierProvider, Consumer, Provider.of',
-        icon: Icons.share_outlined,
-        color: Colors.deepPurple,
-        screen: const StateManagementScreen(),
+            'path_provider + dart:io — write, read, append, delete files',
+        icon: Icons.file_copy_outlined,
+        color: Colors.teal,
+        screen: const ReadWriteFilesScreen(),
       ),
       _Topic(
-        title: 'Approaches to State Management',
+        title: 'Persist Data with SQLite',
         description:
-            'setState, ValueNotifier, InheritedWidget, community packages',
-        icon: Icons.account_tree_outlined,
-        color: Colors.teal,
-        screen: const StateManagementApproachesScreen(),
+            'sqflite CRUD — insert, query, update, delete + offline sync',
+        icon: Icons.table_chart_outlined,
+        color: Colors.deepOrange,
+        screen: const SqliteScreen(),
       ),
       _Topic(
-        title: 'Provider — Shopping Cart',
-        description: 'ChangeNotifier, Consumer, context.read, child optimization',
-        icon: Icons.shopping_cart_outlined,
-        color: Colors.deepPurple,
-        screen: const ProviderScreen(),
-      ),
-      _Topic(
-        title: 'Riverpod — Shopping Cart',
-        description: 'StateNotifier, ConsumerWidget, ref.watch, derived providers',
-        icon: Icons.bolt,
-        color: Colors.teal,
-        screen: const RiverpodScreen(),
+        title: 'Firebase Authentication',
+        description:
+            'Firebase Authentication — sign up, sign in, sign out, auth state',
+        icon: Icons.lock_outline,
+        color: Colors.amber.shade700,
+        screen: const FirebaseAuthScreen(),
       ),
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Beyond the UI'),
+        title: const Text('Persistence'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView.separated(
@@ -63,7 +64,6 @@ class _Topic {
   final IconData icon;
   final Color color;
   final Widget screen;
-
   const _Topic({
     required this.title,
     required this.description,
@@ -83,14 +83,15 @@ class _TopicCard extends StatelessWidget {
       elevation: 2,
       clipBehavior: Clip.antiAlias,
       child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: CircleAvatar(
           backgroundColor: topic.color,
           child: Icon(topic.icon, color: Colors.white),
         ),
-        title: Text(topic.title,
-            style: const TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          topic.title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         subtitle: Text(topic.description),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => Navigator.push(

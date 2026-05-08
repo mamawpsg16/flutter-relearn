@@ -17,7 +17,8 @@ import 'package:flutter_relearn/screens/animations/animations_home.dart';
 import 'package:flutter_relearn/screens/i18n/i18n_home.dart';
 import 'package:flutter_relearn/screens/beyond_ui/beyond_ui_home.dart';
 import 'package:flutter_relearn/screens/networking/networking_home.dart';
-import 'package:flutter_relearn/screens/serialization/json_serialization_home.dart';
+import 'package:flutter_relearn/screens/json_serialization/json_serialization_home.dart';
+import 'package:flutter_relearn/screens/persistence/persistence_home.dart';
 
 class AdaptiveHome extends StatelessWidget {
   const AdaptiveHome({super.key});
@@ -157,6 +158,13 @@ class AdaptiveHome extends StatelessWidget {
         icon: Icons.data_object,
         color: Colors.deepPurple,
         screen: const JsonSerializationHome(),
+      ),
+      _Topic(
+        title: 'Persistence',
+        description: 'Store key-value data on disk with shared_preferences',
+        icon: Icons.storage,
+        color: Colors.indigo,
+        screen: const PersistenceHome(),
       ),
     ];
 
