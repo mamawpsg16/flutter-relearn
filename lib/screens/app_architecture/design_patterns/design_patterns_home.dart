@@ -1,59 +1,43 @@
 import 'package:flutter/material.dart';
-import 'shared_preferences_screen.dart';
-import 'read_write_files_screen.dart';
-import 'sqlite_screen.dart';
-import 'firebase_auth_screen.dart';
-import 'supabase_screen.dart';
+import 'optimistic_state_screen.dart';
+import 'result_pattern_screen.dart';
+import 'offline_first_screen.dart';
 
-class PersistenceHome extends StatelessWidget {
-  const PersistenceHome({super.key});
+class DesignPatternsHome extends StatelessWidget {
+  const DesignPatternsHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     final topics = [
       _Topic(
-        title: 'Store Key-Value Data on Disk',
-        description: 'shared_preferences — save, read, remove, clear',
-        icon: Icons.storage,
-        color: Colors.indigo,
-        screen: const SharedPreferencesScreen(),
-      ),
-      _Topic(
-        title: 'Read & Write Files',
+        title: 'Optimistic State',
         description:
-            'path_provider + dart:io — write, read, append, delete files',
-        icon: Icons.file_copy_outlined,
-        color: Colors.teal,
-        screen: const ReadWriteFilesScreen(),
-      ),
-      _Topic(
-        title: 'Persist Data with SQLite',
-        description:
-            'sqflite CRUD — insert, query, update, delete + offline sync',
-        icon: Icons.table_chart_outlined,
-        color: Colors.deepOrange,
-        screen: const SqliteScreen(),
-      ),
-      _Topic(
-        title: 'Firebase Authentication',
-        description:
-            'Firebase Authentication — sign up, sign in, sign out, auth state',
-        icon: Icons.lock_outline,
+            'Update the UI instantly before the network call completes — revert on failure',
+        icon: Icons.flash_on_outlined,
         color: Colors.amber.shade700,
-        screen: const FirebaseAuthScreen(),
+        screen: const OptimisticStateScreen(),
       ),
       _Topic(
-        title: 'Supabase',
-        description: 'PostgreSQL auth + CRUD — sign up, sign in, sign out, queries',
-        icon: Icons.cloud_outlined,
-        color: Colors.green.shade700,
-        screen: const SupabaseScreen(),
+        title: 'Error Handling with Result',
+        description:
+            'Replace try/catch everywhere with a Result<T,E> object for clean error flow',
+        icon: Icons.error_outline,
+        color: Colors.red.shade600,
+        screen: const ResultPatternScreen(),
+      ),
+      _Topic(
+        title: 'Offline-First Support',
+        description:
+            'Serve cached data when offline, sync with remote when back online',
+        icon: Icons.wifi_off_outlined,
+        color: Colors.blueGrey,
+        screen: const OfflineFirstScreen(),
       ),
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Persistence'),
+        title: const Text('Design Patterns'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView.separated(

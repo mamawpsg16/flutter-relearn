@@ -1,59 +1,25 @@
 import 'package:flutter/material.dart';
-import 'shared_preferences_screen.dart';
-import 'read_write_files_screen.dart';
-import 'sqlite_screen.dart';
-import 'firebase_auth_screen.dart';
-import 'supabase_screen.dart';
+import 'splash_screen_screen.dart';
 
-class PersistenceHome extends StatelessWidget {
-  const PersistenceHome({super.key});
+class AndroidHome extends StatelessWidget {
+  const AndroidHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     final topics = [
       _Topic(
-        title: 'Store Key-Value Data on Disk',
-        description: 'shared_preferences — save, read, remove, clear',
-        icon: Icons.storage,
-        color: Colors.indigo,
-        screen: const SharedPreferencesScreen(),
-      ),
-      _Topic(
-        title: 'Read & Write Files',
+        title: 'Splash Screen',
         description:
-            'path_provider + dart:io — write, read, append, delete files',
-        icon: Icons.file_copy_outlined,
-        color: Colors.teal,
-        screen: const ReadWriteFilesScreen(),
-      ),
-      _Topic(
-        title: 'Persist Data with SQLite',
-        description:
-            'sqflite CRUD — insert, query, update, delete + offline sync',
-        icon: Icons.table_chart_outlined,
-        color: Colors.deepOrange,
-        screen: const SqliteScreen(),
-      ),
-      _Topic(
-        title: 'Firebase Authentication',
-        description:
-            'Firebase Authentication — sign up, sign in, sign out, auth state',
-        icon: Icons.lock_outline,
-        color: Colors.amber.shade700,
-        screen: const FirebaseAuthScreen(),
-      ),
-      _Topic(
-        title: 'Supabase',
-        description: 'PostgreSQL auth + CRUD — sign up, sign in, sign out, queries',
-        icon: Icons.cloud_outlined,
+            'Launch screen while app initialises — styles.xml, AndroidManifest, SplashScreen API',
+        icon: Icons.phone_android,
         color: Colors.green.shade700,
-        screen: const SupabaseScreen(),
+        screen: const SplashScreenScreen(),
       ),
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Persistence'),
+        title: const Text('Android'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView.separated(

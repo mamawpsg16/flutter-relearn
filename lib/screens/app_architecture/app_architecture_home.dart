@@ -1,59 +1,57 @@
 import 'package:flutter/material.dart';
-import 'shared_preferences_screen.dart';
-import 'read_write_files_screen.dart';
-import 'sqlite_screen.dart';
-import 'firebase_auth_screen.dart';
-import 'supabase_screen.dart';
+import 'architecture_concepts_screen.dart';
+import 'architecture_guide_screen.dart';
+import 'architecture_case_study_screen.dart';
+import 'architecture_recommendations_screen.dart';
+import 'design_patterns/design_patterns_home.dart';
 
-class PersistenceHome extends StatelessWidget {
-  const PersistenceHome({super.key});
+class AppArchitectureHome extends StatelessWidget {
+  const AppArchitectureHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     final topics = [
       _Topic(
-        title: 'Store Key-Value Data on Disk',
-        description: 'shared_preferences — save, read, remove, clear',
-        icon: Icons.storage,
+        title: 'Architecture Concepts',
+        description:
+            'Separation of concerns, layered architecture, SSOT, UDF, UI = f(state)',
+        icon: Icons.layers_outlined,
+        color: Colors.deepPurple,
+        screen: const ArchitectureConceptsScreen(),
+      ),
+      _Topic(
+        title: 'Architecture Guide',
+        description: 'MVVM in depth — Views, ViewModels, Repositories, Services, Use-cases',
+        icon: Icons.account_tree_outlined,
         color: Colors.indigo,
-        screen: const SharedPreferencesScreen(),
+        screen: const ArchitectureGuideScreen(),
       ),
       _Topic(
-        title: 'Read & Write Files',
-        description:
-            'path_provider + dart:io — write, read, append, delete files',
-        icon: Icons.file_copy_outlined,
+        title: 'Architecture Case Study',
+        description: 'Command pattern, ChangeNotifier, DI, package structure',
+        icon: Icons.cases_outlined,
         color: Colors.teal,
-        screen: const ReadWriteFilesScreen(),
+        screen: const ArchitectureCaseStudyScreen(),
       ),
       _Topic(
-        title: 'Persist Data with SQLite',
-        description:
-            'sqflite CRUD — insert, query, update, delete + offline sync',
-        icon: Icons.table_chart_outlined,
-        color: Colors.deepOrange,
-        screen: const SqliteScreen(),
-      ),
-      _Topic(
-        title: 'Firebase Authentication',
-        description:
-            'Firebase Authentication — sign up, sign in, sign out, auth state',
-        icon: Icons.lock_outline,
-        color: Colors.amber.shade700,
-        screen: const FirebaseAuthScreen(),
-      ),
-      _Topic(
-        title: 'Supabase',
-        description: 'PostgreSQL auth + CRUD — sign up, sign in, sign out, queries',
-        icon: Icons.cloud_outlined,
+        title: 'Recommendations',
+        description: 'Priority-ranked best practices — strongly recommend, recommend, conditional',
+        icon: Icons.checklist_outlined,
         color: Colors.green.shade700,
-        screen: const SupabaseScreen(),
+        screen: const ArchitectureRecommendationsScreen(),
+      ),
+      _Topic(
+        title: 'Design Patterns',
+        description: 'Optimistic state, Result objects, Offline-first support',
+        icon: Icons.pattern_outlined,
+        color: Colors.deepOrange,
+        screen: const DesignPatternsHome(),
       ),
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Persistence'),
+        title: const Text('App Architecture'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView.separated(

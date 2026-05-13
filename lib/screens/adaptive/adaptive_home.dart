@@ -19,6 +19,8 @@ import 'package:flutter_relearn/screens/beyond_ui/beyond_ui_home.dart';
 import 'package:flutter_relearn/screens/networking/networking_home.dart';
 import 'package:flutter_relearn/screens/json_serialization/json_serialization_home.dart';
 import 'package:flutter_relearn/screens/persistence/persistence_home.dart';
+import 'package:flutter_relearn/screens/app_architecture/app_architecture_home.dart';
+import 'package:flutter_relearn/screens/platform_integration/platform_integration_home.dart';
 
 class AdaptiveHome extends StatelessWidget {
   const AdaptiveHome({super.key});
@@ -165,6 +167,20 @@ class AdaptiveHome extends StatelessWidget {
         icon: Icons.storage,
         color: Colors.indigo,
         screen: const PersistenceHome(),
+      ),
+      _Topic(
+        title: 'App Architecture',
+        description: 'Layered architecture, SSOT, UDF, UI = f(state)',
+        icon: Icons.layers_outlined,
+        color: Colors.deepPurple,
+        screen: const AppArchitectureHome(),
+      ),
+      _Topic(
+        title: 'Platform Integration',
+        description: 'Android & iOS native integration — splash screen, icons, permissions',
+        icon: Icons.integration_instructions_outlined,
+        color: Colors.green.shade700,
+        screen: const PlatformIntegrationHome(),
       ),
     ];
 

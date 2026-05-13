@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_relearn/screens/adaptive/adaptive_home.dart';
@@ -10,6 +11,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Make sure Firebase ready and connected
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // Replace these with your values from Supabase dashboard → Settings → API
+  await Supabase.initialize(
+    url: 'https://vqlhmdsqnvfxdgurhpow.supabase.co',
+    anonKey: 'sb_publishable_1LwT12eyuBOfQ9GBc8ooTg_PY9TttLb',
+  );
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
